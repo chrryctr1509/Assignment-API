@@ -1,0 +1,40 @@
+# Design Direction
+Generated: [timestamp]
+Project: [name]
+
+## Brand Personality
+[formal/casual, modern/classic, bold/subtle]
+
+## Target Audience
+[description]
+
+## Color Palette
+- primary: [hex] — [nama warna]
+- secondary: [hex] — [nama warna]
+- accent: [hex] — [nama warna]
+- neutral-50: [hex]
+- neutral-100: [hex]
+- neutral-900: [hex]
+- success: [hex]
+- warning: [hex]
+- error: [hex]
+- info: [hex]
+
+## Typography
+- heading: '[font-name]', [fallback]
+- body: '[font-name]', [fallback]
+- mono: '[font-name]', monospace
+- base-size: [px]
+- line-height: [ratio]
+
+## Forbidden Patterns
+- ❌ [pattern]: [why forbidden]
+
+## Required Patterns
+- ✅ [pattern]: [why required]
+
+## Component Style Guide
+[key component decisions]
+
+## Reference
+[inspirations, mood board notes]

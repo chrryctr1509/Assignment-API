@@ -1,0 +1,46 @@
+priority,category,rule,rationale,accessibility_impact
+P0,accessibility,"All interactive elements must have minimum 44x44px touch target with 8px spacing","WCAG 2.5.5 — prevents mis-taps on mobile, critical for motor impairments",WCAG_AAA
+P0,accessibility,"Color contrast ratio minimum 4.5:1 for normal text and 3:1 for large text","WCAG 1.4.3 — text must be readable for low-vision users",WCAG_AA
+P0,accessibility,"All images must have descriptive alt text or empty alt for decorative images","WCAG 1.1.1 — screen readers depend on alt text for context",WCAG_A
+P0,accessibility,"Focus indicator must be visible: 3-4px outline with sufficient contrast","WCAG 2.4.7 — keyboard users must see where focus is",WCAG_AA
+P0,accessibility,"Skip navigation link as first focusable element on every page","WCAG 2.4.1 — keyboard users should skip repetitive nav",WCAG_A
+P0,accessibility,"Respect prefers-reduced-motion media query — disable animations when set","WCAG 2.3.3 — motion can cause vestibular disorders",WCAG_AAA
+P0,accessibility,"Form inputs must have visible labels (not just placeholder text)","WCAG 1.3.1 — placeholders disappear on focus, breaking context",WCAG_A
+P0,accessibility,"Error messages must identify the field and describe what went wrong","WCAG 3.3.1 — users need to know what to fix and where",WCAG_A
+P1,navigation,"Implement smooth scrolling with offset for fixed headers","Prevents content hiding under sticky nav, improves perceived polish",none
+P1,navigation,"Sticky navigation must not exceed 64px height on desktop or 48px on mobile","Excessive nav steals viewport space, especially on small screens",none
+P1,navigation,"Breadcrumbs for any page deeper than 2 levels in hierarchy","Users need orientation in deep navigation structures",WCAG_A
+P1,navigation,"Deep links must scroll to and highlight the target section","Shared URLs should land users at the exact content referenced",none
+P1,navigation,"Mobile hamburger menu must be reachable with one thumb (bottom-right preferred)","Thumb zone accessibility — top-left is hardest to reach on large phones",none
+P1,performance,"Images must use next-gen formats (WebP/AVIF) with fallback","Reduces page weight 25-50% vs PNG/JPEG without quality loss",none
+P1,performance,"Implement skeleton screens instead of spinners for loading states","Perceived performance improves — users see structure before content",none
+P1,performance,"Lazy load images and heavy components below the fold","First Contentful Paint improves when above-fold loads first",none
+P1,performance,"Use CSS content-visibility: auto for long scrollable lists","Browser skips rendering off-screen items, massive perf gain",none
+P1,performance,"Font loading: use font-display: swap with preloaded critical fonts","Prevents invisible text flash (FOIT), shows fallback instantly",none
+P2,animation,"Limit hero animations to 1-2 key elements — never animate everything","Too many animations create cognitive overload and feel cheap",WCAG_partial
+P2,animation,"Micro-interactions should be 150-300ms — never exceed 500ms","Longer animations feel sluggish; shorter ones feel instant and responsive",none
+P2,animation,"Use ease-out for entering elements and ease-in for exiting elements","Matches natural physics — objects decelerate arriving, accelerate leaving",none
+P2,animation,"Stagger list item animations by 50-80ms per item, max 5 items","Creates rhythm without making users wait; cap prevents long sequences",none
+P2,animation,"Loading indicators must appear after 300ms delay — not instantly","Instant spinners for fast operations create unnecessary visual noise",none
+P2,layout,"Maintain consistent 8px spacing grid throughout the application","Visual rhythm and alignment; easier to maintain proportional spacing",none
+P2,layout,"Maximum text line width: 65-75 characters for optimal readability","Beyond 75 chars, eye tracking becomes difficult and reading speed drops",WCAG_partial
+P2,layout,"Use dvh (dynamic viewport height) instead of vh on mobile","100vh on mobile includes address bar space, causing overflow",none
+P2,layout,"Z-index scale: base(0) overlays(100) modals(200) toasts(300) tooltips(400)","Prevents z-index wars and unpredictable stacking",none
+P2,layout,"Reserve space for dynamic content to prevent layout shift (CLS)","Cumulative Layout Shift hurts UX and Core Web Vitals score",none
+P2,interaction,"Double-submit prevention on all form buttons (disable after first click)","Prevents duplicate transactions — critical for payment and data mutations",none
+P2,interaction,"Provide immediate visual feedback on every user action within 100ms","Users need confirmation their action registered — even before completion",none
+P2,interaction,"Destructive actions require confirmation dialog with explicit action text","Delete button should say 'Delete project' not just 'OK' — prevents accidents",none
+P2,interaction,"Empty states must include clear call-to-action, not just 'No data'","Empty screens are onboarding opportunities — guide users to next action",none
+P2,interaction,"Toast notifications auto-dismiss in 3-5 seconds, errors persist until dismissed","Success is transient, errors need user attention and action",none
+P3,typography,"Use system font stack as fallback: -apple-system BlinkMacSystemFont Segoe UI","Ensures readable text even before custom fonts load",none
+P3,typography,"Heading hierarchy must be sequential: h1 > h2 > h3 (never skip levels)","Screen readers use heading levels for navigation structure",WCAG_A
+P3,typography,"Body text minimum 16px on mobile, 14px on desktop with 1.5 line-height","Below these sizes, readability drops significantly especially on mobile",WCAG_partial
+P3,typography,"Limit to 2-3 font families maximum per project","Too many fonts create visual chaos and increase load time",none
+P3,responsive,"Mobile-first approach: design for 375px then scale up","Forces content prioritization — mobile constraints reveal what matters",none
+P3,responsive,"Breakpoints: 640px (sm) 768px (md) 1024px (lg) 1280px (xl) 1536px (2xl)","Matches Tailwind defaults and covers all common device sizes",none
+P3,responsive,"Test at 320px width minimum — some devices still use this","iPhone SE and budget Android devices have narrow viewports",WCAG_partial
+P3,responsive,"Tables must be horizontally scrollable or card-transformed on mobile","Tables wider than viewport are unusable without scroll",none
+P3,color,"Semantic colors: success(green) warning(amber) error(red) info(blue)","Consistent color meaning across the app reduces cognitive load",WCAG_partial
+P3,color,"Never use color alone to convey information — add icon or text label","Color-blind users (8% of males) cannot distinguish color-only signals",WCAG_A
+P3,color,"Dark mode: reduce white to #E2E8F0 and use dark gray #0F172A not pure black","Pure white on pure black causes eye strain; slight reduction is gentler",none
+P3,color,"Limit accent color usage to 10-15% of the UI surface area","Accent overuse dilutes its attention-drawing purpose",none

@@ -1,0 +1,32 @@
+# Merge Plan
+Generated: [timestamp]
+Wave: [N]
+Branch: develop
+
+## Pre-Merge Checklist
+- [ ] All teammates completed their features
+- [ ] All individual tests pass
+- [ ] No unresolved conflicts detected
+
+## Merge Order
+1. [branch-name] → develop
+   - Feature: [name]
+   - Files: [count]
+   - Dependencies: none
+   - Risk: LOW | MEDIUM | HIGH
+
+2. [branch-name] → develop
+   - Feature: [name]
+   - Files: [count]
+   - Dependencies: [branch from step 1]
+   - Risk: LOW | MEDIUM | HIGH
+
+## Conflict Predictions
+- [file-path]: touched by [branch-a] and [branch-b]
+  - Resolution strategy: [keep branch-a version | manual merge | sequential]
+
+## Post-Merge Verification
+- [ ] Full test suite passes
+- [ ] Health check: all containers healthy
+- [ ] No regression in existing features
+- [ ] Coverage not decreased

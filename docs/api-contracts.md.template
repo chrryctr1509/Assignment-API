@@ -1,0 +1,22 @@
+# API Contracts
+
+> Auto-generated oleh be-developer agents setelah endpoint creation.
+> FE developers: BACA file ini sebelum coding components yang consume API.
+> QA: VERIFY actual responses match documented shapes.
+
+---
+
+<!--
+FORMAT PER ENDPOINT:
+
+### [METHOD] [PATH]
+Response: [HTTP status]
+```json
+{ ... exact shape ... }
+```
+⚠️ Notes for FE:
+- [gotchas, nested objects, wrapper patterns]
+
+-->
+
+<!-- Endpoints akan ditambahkan oleh be-developer agents -->

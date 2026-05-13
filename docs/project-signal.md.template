@@ -1,0 +1,26 @@
+# Project Signal
+Generated: [timestamp]
+
+## Input Analysis
+- input_type: brief | bug_report | text | resume
+- input_file: [path or "inline"]
+- features_detected:
+  - [feature_name]: [short description]
+
+## Codebase Analysis
+- has_codebase: true | false
+- stack_backend: [Laravel | Node.js | Python | none]
+- stack_frontend: [React | Next.js | none]
+- stack_database: [MySQL | PostgreSQL | SQLite | none]
+- docker: true | false
+- test_suite: [jest | phpunit | pytest | none]
+- existing_features: [list of detected features/modules]
+
+## Scope Estimation
+- scope_size: SMALL | MEDIUM | LARGE
+- estimated_files: [N]
+- estimated_new_files: [N]
+- estimated_modified_files: [N]
+- has_db_changes: true | false
+- has_api_changes: true | false
+- has_auth_requirements: true | false

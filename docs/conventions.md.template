@@ -1,0 +1,17 @@
+# Convention Report
+Generated: [timestamp]
+Stacks: [list]
+
+## [Stack Name] — v[current] → v[latest]
+
+### Breaking Changes
+- [change]: [impact] | [migration path] | Source: [URL]
+
+### Deprecated (akan dihapus)
+- [API/pattern]: deprecated since v[X], gunakan [replacement] | Source: [URL]
+
+### New Patterns (recommended)
+- [pattern]: [when to use] | [example] | Source: [URL]
+
+### Security Advisories
+- [CVE/advisory]: [severity] | [affected versions] | [fix] | Source: [URL]

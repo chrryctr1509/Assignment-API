@@ -1,0 +1,28 @@
+﻿{
+    "mcpServers":  {
+                       "chrome-devtools":  {
+                                               "args":  [
+                                                            "-y",
+                                                            "chrome-devtools-mcp@latest",
+                                                            "--headless"
+                                                        ],
+                                               "env":  {
+
+                                                       },
+                                               "command":  "npx"
+                                           },
+                       "playwright":  {
+                                          "args":  [
+                                                       "-y",
+                                                       "@playwright/mcp@latest",
+                                                       "--headless",
+                                                       "--executable-path",
+                                                       "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+                                                   ],
+                                          "env":  {
+                                                      "PLAYWRIGHT_BROWSERS_PATH":  "C:\\Users\\MSI Thin\\.cache\\ms-playwright"
+                                                  },
+                                          "command":  "npx"
+                                      }
+                   }
+}

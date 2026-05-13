@@ -1,0 +1,31 @@
+# Wave Plan
+Generated: [timestamp]
+Scope: [SMALL|MEDIUM|LARGE]
+Total Waves: [N]
+Total Features: [N]
+Strategy: adaptive
+
+## Dependency Graph
+[feature_a] → [feature_b]
+[feature_c] → [feature_d]
+
+## Wave 0: Foundation (greenfield only)
+- Strategy: single
+- Tasks: project-initializer, env-configurator, db-designer, health-check
+- Depends on: none
+
+## Wave 1: [Name]
+- Strategy: single | team
+- Teammates: [N]
+- Features:
+  - [feature_name]: assigned to teammate-1, worktree: wave-1-[slug]
+- Depends on: [Wave 0 | none]
+- Estimated files: [N]
+
+## Wave N: [Name]
+- Strategy: single | team
+- Teammates: [N]
+- Features:
+  - [feature_name]: assigned to teammate-N, worktree: wave-N-[slug]
+- Depends on: [Wave N-1]
+- Estimated files: [N]

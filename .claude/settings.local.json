@@ -1,0 +1,27 @@
+﻿{
+  "env": {
+    "TELEGRAM_BOT_TOKEN": "",
+    "TELEGRAM_CHAT_ID": "",
+
+    "GITLAB_TOKEN": "",
+    "GITLAB_REPO_URL": "",
+
+    "GITHUB_TOKEN": "",
+    "GITHUB_REPO_URL": ""
+  },
+  "permissions": {
+    "allow": [
+      "Bash(chmod +x .claude/telegram/*.sh)",
+      "Bash(bash .claude/telegram/manage.sh stop)",
+      "Bash(bash .claude/telegram/manage.sh start)",
+      "Bash(bash .claude/telegram/manage.sh start-channels)",
+      "Bash(bash .claude/telegram/manage.sh status)",
+      "Bash(docker compose:*)",
+      "Bash(docker exec:*)",
+      "Bash(git status)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git branch:*)"
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+# Test Matrix Result
+Generated: [timestamp]
+Environments tested: [N]
+Total TCs: [N]
+
+## Summary
+| Environment | Total | Pass | Fail | Known Issue | N/A |
+|-------------|-------|------|------|-------------|-----|
+| Docker-MySQL | | | | | |
+| Docker-PostgreSQL | | | | | |
+| Staging | | | | | |
+| Mobile | | | | | |
+| Office Add-in | | | | | |
+
+## Pass Rate
+- Overall: [N]%
+- Per environment: [breakdown]
+
+## Failed TCs Detail
+
+### TC-XXX — [name]
+- Docker-MySQL: ✅ | ❌ [error]
+- Docker-PostgreSQL: ✅ | ❌ [error]
+- Root cause: [analysis]
+- Recommendation: [fix | escalate | known-issue]
+
+## Known Issues
+- TC-XXX: [description] — tracked in fix-ledger.md

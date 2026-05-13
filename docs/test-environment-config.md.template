@@ -1,0 +1,43 @@
+# Test Environment Configuration
+Generated: [timestamp]
+
+## Environments
+
+### Docker MySQL (default)
+- Service: db
+- Engine: mysql:8.0
+- Host: db (docker network)
+- Port: 3306
+- Database: [project_db]
+- User: [root]
+- Password: [from .env]
+- Connection string: mysql://[user]:[pass]@db:3306/[db_name]
+
+### Docker PostgreSQL
+- Service: db-pgsql
+- Engine: postgres:15
+- Host: db-pgsql (docker network)
+- Port: 5432
+- Database: [project_db]
+- User: [postgres]
+- Password: [from .env]
+- Connection string: postgresql://[user]:[pass]@db-pgsql:5432/[db_name]
+
+### Staging
+- URL: [staging_url]
+- API Base: [api_base_url]
+- Auth: [method]
+- Credentials: [reference to secure storage]
+
+### Mobile Viewports
+- iPhone SE: 375x667
+- iPhone 14: 390x844
+- iPhone 14 Plus: 414x896
+- iPad: 768x1024
+- iPad Pro: 1024x1366
+
+### Office Add-in
+- Dev server: http://localhost:3000
+- Manifest: [path to manifest.xml]
+- Target apps: [Word | Excel | PowerPoint | Outlook]
+- Office version: [minimum version]

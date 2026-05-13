@@ -1,0 +1,36 @@
+industry,palette_name,primary,secondary,accent,neutral_light,neutral_dark,psychology,contrast_strategy
+fintech,blue-trust,#1A56DB,#1C64F2,#E74694,#F9FAFB,#111928,"Blue=trust+stability, pink accent=modern edge",WCAG AA on all text
+fintech,dark-finance,#0F172A,#1E293B,#38BDF8,#F8FAFC,#0F172A,"Dark=premium+serious, sky accent=data clarity",High contrast for data tables
+fintech,green-wealth,#046C4E,#0E9F6E,#FBBF24,#F9FAFB,#111928,"Green=growth+money, amber accent=alerts",WCAG AA minimum
+healthcare,clean-medical,#1A56DB,#3F83F8,#0E9F6E,#FFFFFF,#1F2937,"Blue=trust+calm, green=health+vitality",WCAG AAA mandatory for healthcare
+healthcare,warm-care,#7E3AF2,#9061F9,#F472B6,#FFF7ED,#1F2937,"Purple=expertise, pink=compassion+care",WCAG AAA mandatory
+healthcare,clinical-white,#047481,#0694A2,#F05252,#FFFFFF,#111928,"Teal=cleanliness, red=alerts only",WCAG AAA with high-contrast mode
+education,friendly-learn,#7E3AF2,#9061F9,#FBBF24,#FFFBEB,#1F2937,"Purple=creativity, amber=energy+engagement",Large text friendly for young readers
+education,calm-study,#1A56DB,#3F83F8,#10B981,#F0FDF4,#111928,"Blue=focus, green=progress+achievement",Clear hierarchy for learning content
+education,playful-kids,#E74694,#F472B6,#FBBF24,#FFFBEB,#1F2937,"Pink=fun, amber=warmth+playful energy",High contrast for accessibility
+saas,modern-saas,#4F46E5,#6366F1,#06B6D4,#F9FAFB,#0F172A,"Indigo=professional+modern, cyan=innovation",Dashboard-friendly with clear states
+saas,minimal-tool,#111928,#374151,#3B82F6,#FFFFFF,#111928,"Neutral=tool-like, blue accent=interactive",Minimal palette for complex UI
+saas,warm-saas,#DC2626,#EF4444,#F59E0B,#FFFBEB,#1F2937,"Red=action+urgency, amber=attention",CTAs must stand out from content
+ecommerce,shop-modern,#111928,#1F2937,#F59E0B,#FFFFFF,#111928,"Dark=premium, amber=buy/CTA energy",CTA buttons 4.5:1 minimum
+ecommerce,luxury-store,#78350F,#92400E,#D97706,#FFFBEB,#1C1917,"Brown=luxury+craft, gold=premium value",Warm palette needs careful text contrast
+ecommerce,fresh-market,#047857,#059669,#F97316,#FFFFFF,#111928,"Green=fresh+organic, orange=appetite+energy",Food-safe colors feel natural
+internal-tool,admin-neutral,#374151,#4B5563,#3B82F6,#F9FAFB,#111928,"Gray=professional+stable, blue=interactive",Dense UI needs clear interactive vs static
+internal-tool,dashboard-dark,#0F172A,#1E293B,#22D3EE,#F8FAFC,#0F172A,"Dark=focus, cyan=data highlights",Bright accents on dark for data viz
+creative,bold-studio,#DC2626,#EF4444,#FBBF24,#FFFFFF,#111928,"Red=passion+energy, amber=creativity",High saturation for impact
+creative,mono-elegant,#111928,#374151,#E5E7EB,#FFFFFF,#111928,"Monochrome=timeless+sophisticated",Rely on typography not color
+creative,neon-digital,#7C3AED,#8B5CF6,#06FFA5,#0F172A,#0F172A,"Purple=creativity, neon green=digital edge",Dark mode with neon accents
+lifestyle,wellness-calm,#047857,#059669,#D1FAE5,#F0FDF4,#1F2937,"Green=nature+wellness, light green=serenity",Soft palette with readable text
+lifestyle,fitness-energy,#DC2626,#EF4444,#111928,#FFFFFF,#111928,"Red=energy+power, black=strength",Bold contrast for motivation
+lifestyle,beauty-rose,#BE185D,#EC4899,#FDF2F8,#FFFFFF,#1F2937,"Rose=beauty+elegance, blush=soft luxury",Feminine palette with warm tones
+food,appetite-warm,#DC2626,#EF4444,#F59E0B,#FFFBEB,#1F2937,"Red=appetite, amber=warmth+comfort",Warm tones stimulate appetite
+food,organic-earth,#78350F,#92400E,#047857,#F0FDF4,#1F2937,"Brown=earth+natural, green=fresh",Earth tones for organic/farm-to-table
+travel,explore-blue,#0369A1,#0284C7,#F59E0B,#F0F9FF,#0F172A,"Blue=sky+ocean, amber=sunshine+warmth",Vibrant for aspirational imagery
+travel,adventure-earth,#78350F,#A16207,#059669,#FFFFFF,#1F2937,"Earth=adventure+nature, green=outdoors",Rugged palette for adventure brands
+government,civic-blue,#1E3A5F,#2563EB,#DC2626,#F9FAFB,#111928,"Navy=authority+trust, red=official alerts",WCAG AA minimum all content
+government,accessible-high,#000000,#1F2937,#1D4ED8,#FFFFFF,#000000,"Black+white=maximum clarity, blue=links",WCAG AAA enforced throughout
+gaming,cyber-dark,#7C3AED,#A855F7,#06FFA5,#0F172A,#0F172A,"Purple=fantasy, neon green=digital",High contrast neons on dark
+gaming,retro-pixel,#EF4444,#F59E0B,#3B82F6,#1F2937,#0F172A,"Primary colors=retro arcade nostalgia",8-bit inspired bright palette
+nonprofit,trust-warm,#1D4ED8,#3B82F6,#F59E0B,#FFFFFF,#1F2937,"Blue=trust+transparency, amber=hope+warmth",Approachable and credible
+nonprofit,earth-care,#047857,#059669,#78350F,#F0FDF4,#1F2937,"Green=environment+care, brown=earth",Nature-connected for causes
+real-estate,premium-dark,#1F2937,#374151,#D97706,#FFFFFF,#111928,"Dark=premium, gold=luxury property",Elegant with clear property details
+real-estate,home-warm,#92400E,#B45309,#047857,#FFF7ED,#1F2937,"Warm brown=home+comfort, green=growth",Inviting palette for residential

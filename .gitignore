@@ -1,0 +1,10 @@
+docs/video-frames/
+graphify-out/graph.json
+graphify-out/graph.html
+graphify-out/transcripts/
+
+# Project specific
+node_modules/
+.env
+uploads/*
+!uploads/.gitkeep

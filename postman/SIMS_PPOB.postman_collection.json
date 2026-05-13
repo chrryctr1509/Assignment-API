@@ -1,0 +1,259 @@
+{
+  "info": {
+    "name": "SIMS PPOB API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3000"
+    },
+    {
+      "key": "token",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "Registration",
+      "request": {
+        "method": "POST",
+        "url": {
+          "raw": "{{base_url}}/registration",
+          "host": ["{{base_url}}"],
+          "path": ["registration"]
+        },
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"email\": \"test@example.com\", \"first_name\": \"Test\", \"last_name\": \"User\", \"password\": \"password123\"}"
+        },
+        "description": "Register new user"
+      }
+    },
+    {
+      "name": "Login",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var jsonData = pm.response.json();",
+              "if (jsonData.data && jsonData.data.token) {",
+              "    pm.collectionVariables.set('token', jsonData.data.token);",
+              "}"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "url": {
+          "raw": "{{base_url}}/login",
+          "host": ["{{base_url}}"],
+          "path": ["login"]
+        },
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"email\": \"test@example.com\", \"password\": \"password123\"}"
+        },
+        "description": "Login and save token to collection variable"
+      }
+    },
+    {
+      "name": "Get Profile",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{base_url}}/profile",
+          "host": ["{{base_url}}"],
+          "path": ["profile"]
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "description": "Get user profile"
+      }
+    },
+    {
+      "name": "Update Profile",
+      "request": {
+        "method": "PUT",
+        "url": {
+          "raw": "{{base_url}}/profile/update",
+          "host": ["{{base_url}}"],
+          "path": ["profile", "update"]
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"first_name\": \"Updated\", \"last_name\": \"Name\"}"
+        },
+        "description": "Update user profile"
+      }
+    },
+    {
+      "name": "Update Profile Image",
+      "request": {
+        "method": "PUT",
+        "url": {
+          "raw": "{{base_url}}/profile/image",
+          "host": ["{{base_url}}"],
+          "path": ["profile", "image"]
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "profile_image",
+              "type": "file",
+              "src": ""
+            }
+          ]
+        },
+        "description": "Update profile image (jpeg/png only)"
+      }
+    },
+    {
+      "name": "Get Banner",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{base_url}}/banner",
+          "host": ["{{base_url}}"],
+          "path": ["banner"]
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "description": "Get banner list"
+      }
+    },
+    {
+      "name": "Get Services",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{base_url}}/services",
+          "host": ["{{base_url}}"],
+          "path": ["services"]
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "description": "Get available services"
+      }
+    },
+    {
+      "name": "Get Balance",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{base_url}}/balance",
+          "host": ["{{base_url}}"],
+          "path": ["balance"]
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "description": "Get user balance"
+      }
+    },
+    {
+      "name": "Top Up",
+      "request": {
+        "method": "POST",
+        "url": {
+          "raw": "{{base_url}}/topup",
+          "host": ["{{base_url}}"],
+          "path": ["topup"]
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"top_up_amount\": 50000}"
+        },
+        "description": "Top up balance"
+      }
+    },
+    {
+      "name": "Transaction",
+      "request": {
+        "method": "POST",
+        "url": {
+          "raw": "{{base_url}}/transaction",
+          "host": ["{{base_url}}"],
+          "path": ["transaction"]
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"service_code\": \"PULSA\"}"
+        },
+        "description": "Pay for a service"
+      }
+    },
+    {
+      "name": "Transaction History",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{base_url}}/transaction/history?offset=0&limit=5",
+          "host": ["{{base_url}}"],
+          "path": ["transaction", "history"],
+          "query": [
+            {
+              "key": "offset",
+              "value": "0"
+            },
+            {
+              "key": "limit",
+              "value": "5"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "description": "Get transaction history with pagination"
+      }
+    }
+  ]
+}

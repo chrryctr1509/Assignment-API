@@ -1,0 +1,47 @@
+-- SIMS PPOB Database Schema
+-- Database Engine: MySQL
+
+-- Users table
+CREATE TABLE IF NOT EXISTS users (
+  id CHAR(36) PRIMARY KEY DEFAULT (UUID()),
+  email VARCHAR(100) UNIQUE NOT NULL,
+  first_name VARCHAR(50) NOT NULL,
+  last_name VARCHAR(50) NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  profile_image VARCHAR(255) DEFAULT NULL,
+  balance DECIMAL(15,2) DEFAULT 0,
+  created_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- Banners table
+CREATE TABLE IF NOT EXISTS banners (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  banner_name VARCHAR(100) NOT NULL,
+  banner_image VARCHAR(255) NOT NULL,
+  description TEXT,
+  created_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Services table
+CREATE TABLE IF NOT EXISTS services (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  service_code VARCHAR(50) UNIQUE NOT NULL,
+  service_name VARCHAR(100) NOT NULL,
+  service_icon VARCHAR(255),
+  service_tariff DECIMAL(15,2) NOT NULL,
+  created_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Transactions table
+CREATE TABLE IF NOT EXISTS transactions (
+  id CHAR(36) PRIMARY KEY DEFAULT (UUID()),
+  user_id CHAR(36) NOT NULL,
+  invoice_number VARCHAR(50) UNIQUE NOT NULL,
+  service_code VARCHAR(50) DEFAULT NULL,
+  service_name VARCHAR(100) DEFAULT NULL,
+  transaction_type VARCHAR(20) NOT NULL,
+  total_amount DECIMAL(15,2) NOT NULL,
+  created_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES users(id)
+);

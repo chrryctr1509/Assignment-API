@@ -1,0 +1,29 @@
+# Hook Analytics
+
+Cumulative hook event data. Di-update oleh session-summary.sh hook setiap session selesai.
+retro-agent membaca file ini untuk trend analysis.
+
+## Last Updated: [timestamp]
+
+## Design Violations (cumulative)
+| Pattern | Count | Agent | First Seen | Last Seen |
+|---------|-------|-------|------------|-----------|
+
+## Security Blocks (cumulative)
+| Operation | Count | Agent | First Seen | Last Seen |
+|-----------|-------|-------|------------|-----------|
+
+## Test Failures from Hooks (cumulative)
+| File Pattern | Fail Count | Common Error | First Seen | Last Seen |
+|--------------|-----------|--------------|------------|-----------|
+
+## Format Fixes Applied (cumulative)
+| File Type | Fix Count | Formatter |
+|-----------|----------|-----------|
+
+## Summary Stats
+- Total sessions tracked: 0
+- Total design violations: 0
+- Total security blocks: 0
+- Total test failures caught: 0
+- Total format fixes: 0

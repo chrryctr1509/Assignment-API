@@ -1,0 +1,346 @@
+{
+  "agent-protocol-base": {
+    "stacks": [
+      "*"
+    ],
+    "auto_load_for": [
+      "be-developer",
+      "fe-developer",
+      "code-reviewer",
+      "qa-tester",
+      "qa-checklist-runner"
+    ],
+    "description": "Shared execution protocol (LANGKAH 0, Docker rules, error handling, structured output)"
+  },
+  "laravel-conventions": {
+    "stacks": [
+      "php",
+      "laravel"
+    ],
+    "auto_load_for": [
+      "be-developer",
+      "code-reviewer",
+      "qa-tester"
+    ],
+    "description": "Laravel/PHP coding standards and patterns"
+  },
+  "python-conventions": {
+    "stacks": [
+      "python",
+      "fastapi",
+      "django"
+    ],
+    "auto_load_for": [
+      "be-developer",
+      "code-reviewer",
+      "qa-tester"
+    ],
+    "description": "Python/FastAPI/Pydantic/SQLAlchemy patterns"
+  },
+  "nodejs-conventions": {
+    "stacks": [
+      "node",
+      "express",
+      "nestjs"
+    ],
+    "auto_load_for": [
+      "be-developer",
+      "code-reviewer"
+    ],
+    "description": "Node.js/TypeScript backend patterns"
+  },
+  "go-conventions": {
+    "stacks": [
+      "go"
+    ],
+    "auto_load_for": [
+      "be-developer",
+      "code-reviewer"
+    ],
+    "description": "Go interface-driven design, error handling, testing"
+  },
+  "kotlin-conventions": {
+    "stacks": [
+      "kotlin",
+      "android"
+    ],
+    "auto_load_for": [
+      "be-developer",
+      "code-reviewer"
+    ],
+    "description": "Kotlin/Jetpack Compose/Hilt patterns"
+  },
+  "vue-conventions": {
+    "stacks": [
+      "vue",
+      "nuxt"
+    ],
+    "auto_load_for": [
+      "fe-developer",
+      "code-reviewer",
+      "qa-tester"
+    ],
+    "description": "Vue 3 Composition API, Pinia, Teleport patterns"
+  },
+  "react-conventions": {
+    "stacks": [
+      "react",
+      "nextjs"
+    ],
+    "auto_load_for": [
+      "fe-developer",
+      "code-reviewer"
+    ],
+    "description": "React Server/Client components, hooks, Zustand"
+  },
+  "angular-conventions": {
+    "stacks": [
+      "angular"
+    ],
+    "auto_load_for": [
+      "fe-developer",
+      "code-reviewer"
+    ],
+    "description": "Angular 17+ standalone components, signals"
+  },
+  "flutter-conventions": {
+    "stacks": [
+      "flutter",
+      "dart"
+    ],
+    "auto_load_for": [
+      "fe-developer",
+      "code-reviewer"
+    ],
+    "description": "Flutter Riverpod, Material 3 patterns"
+  },
+  "swiftui-conventions": {
+    "stacks": [
+      "swift",
+      "ios"
+    ],
+    "auto_load_for": [
+      "fe-developer",
+      "code-reviewer"
+    ],
+    "description": "SwiftUI @Observable, MVVM, async/await"
+  },
+  "git-operations": {
+    "stacks": [
+      "*"
+    ],
+    "auto_load_for": [
+      "be-developer",
+      "fe-developer",
+      "git-manager",
+      "pr-creator"
+    ],
+    "description": "Standard git operations and branch management"
+  },
+  "frontend-standards": {
+    "stacks": [
+      "*"
+    ],
+    "auto_load_for": [
+      "fe-developer",
+      "design-director"
+    ],
+    "description": "Unified design guide (philosophy + craft execution)"
+  },
+  "frontend-craft": {
+    "stacks": [
+      "*"
+    ],
+    "auto_load_for": [
+      "fe-developer"
+    ],
+    "description": "Typography, color systems, motion, anti-slop guidance"
+  },
+  "design-direction": {
+    "stacks": [
+      "*"
+    ],
+    "auto_load_for": [
+      "fe-developer",
+      "design-director"
+    ],
+    "description": "Anti-slop checklist, design tokens, reference methodology"
+  },
+  "docker-env": {
+    "stacks": [
+      "*"
+    ],
+    "auto_load_for": [
+      "env-configurator",
+      "docker-manager"
+    ],
+    "description": "Docker compose exec patterns for all stacks"
+  },
+  "fix-ledger-protocol": {
+    "stacks": [
+      "*"
+    ],
+    "auto_load_for": [
+      "fix-strategist",
+      "tracer"
+    ],
+    "description": "Fix strategy tracking with escalation matrix"
+  },
+  "qa-checklist": {
+    "stacks": [
+      "*"
+    ],
+    "auto_load_for": [
+      "qa-checklist-generator",
+      "qa-checklist-runner",
+      "qa-checklist-interpreter"
+    ],
+    "description": "Modular QA pipeline with checklist generation and execution"
+  },
+  "multi-db-testing": {
+    "stacks": [
+      "*"
+    ],
+    "auto_load_for": [
+      "qa-tester",
+      "qa-checklist-runner",
+      "environment-matrix-runner"
+    ],
+    "description": "MySQL vs PostgreSQL gotchas, environment-specific test patterns"
+  },
+  "wave-execution": {
+    "stacks": [
+      "*"
+    ],
+    "auto_load_for": [
+      "orchestrator",
+      "wave-planner"
+    ],
+    "description": "Team lead prompt template, worktree naming, merge strategy"
+  },
+  "context-resilience": {
+    "stacks": [
+      "*"
+    ],
+    "auto_load_for": [
+      "orchestrator"
+    ],
+    "description": "Compact context guidance and resume patterns"
+  },
+  "review": {
+    "stacks": [
+      "*"
+    ],
+    "auto_load_for": [
+      "code-reviewer"
+    ],
+    "description": "Pre-landing PR review for SQL safety, LLM boundaries"
+  },
+  "retro": {
+    "stacks": [
+      "*"
+    ],
+    "auto_load_for": [
+      "retro-agent"
+    ],
+    "description": "Weekly engineering retrospective with metrics"
+  },
+  "api-design-conventions": {
+    "stacks": [
+      "*"
+    ],
+    "auto_load_for": [
+      "be-developer",
+      "code-reviewer",
+      "qa-tester",
+      "qa-checklist-generator"
+    ],
+    "description": "Stack-agnostic REST API standards: naming, envelope, pagination, status codes, auth, rate limiting. Based on SIM-01/05/06/09/10 findings."
+  },
+  "video-input": {
+    "stacks": [
+      "*"
+    ],
+    "auto_load_for": [
+      "orchestrator",
+      "design-director",
+      "fe-developer",
+      "tracer",
+      "fix-strategist",
+      "brief-interpreter"
+    ],
+    "description": "Extract frames dari video (.mp4, .mov, .webm, .avi, .mkv) via ffmpeg untuk visual analysis"
+  },
+  "pipeline-build": {
+    "stacks": [
+      "*"
+    ],
+    "auto_load_for": [
+      "orchestrator"
+    ],
+    "description": "Full pipeline: Phase 0 → 0B → 1 → APPROVE → 2.5 → 2 → 3 → 4 → Critic → PR"
+  },
+  "pipeline-bugfix": {
+    "stacks": [
+      "*"
+    ],
+    "auto_load_for": [
+      "orchestrator"
+    ],
+    "description": "BUG_FIX shortcut: Tracer → Fix Strategy → Developer → Review → PR"
+  },
+  "pipeline-smalledit": {
+    "stacks": [
+      "*"
+    ],
+    "auto_load_for": [
+      "orchestrator"
+    ],
+    "description": "SMALL_EDIT shortcut: Developer (haiku) → Reviewer → Commit"
+  },
+  "pipeline-discussion": {
+    "stacks": [
+      "*"
+    ],
+    "auto_load_for": [
+      "orchestrator"
+    ],
+    "description": "Consultant mode: analysis + discussion, zero implementation"
+  },
+  "pipeline-ops": {
+    "stacks": [
+      "*"
+    ],
+    "auto_load_for": [
+      "orchestrator"
+    ],
+    "description": "Operational modes: TEST, REVIEW, SHIP, RETRO"
+  },
+  "pipeline-resume": {
+    "stacks": [
+      "*"
+    ],
+    "auto_load_for": [
+      "orchestrator"
+    ],
+    "description": "Resume interrupted pipeline dari file-level checkpoint"
+  },
+  "pipeline-postpipeline": {
+    "stacks": [
+      "*"
+    ],
+    "auto_load_for": [
+      "orchestrator"
+    ],
+    "description": "Post-pipeline: intelligence update, docs refresh, timestamp"
+  },
+  "pipeline-delivery": {
+    "stacks": [
+      "*"
+    ],
+    "auto_load_for": [
+      "orchestrator"
+    ],
+    "description": "Generate delivery report + user guidance setelah verification + QA pass, sebelum PR creation"
+  }
+}

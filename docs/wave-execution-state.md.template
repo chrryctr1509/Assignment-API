@@ -1,0 +1,44 @@
+# Wave Execution State
+
+Auto-updated oleh orchestrator. Untuk resume setelah context habis.
+Jangan edit manual.
+
+## Current Session
+- **Started**: [timestamp]
+- **Current Wave**: [N]
+- **Current File**: [path]
+- **Status**: [executing | compact-needed | stopped-context-limit | completed]
+
+## Wave Progress
+
+### Wave 1: [name]
+- Strategy: [sequential/parallel]
+- Teammates: [N]
+- Status: [pending | in_progress | completed]
+- Files:
+  - [ ] path/to/file1.py
+  - [ ] path/to/file2.py
+  - [x] path/to/file3.py
+  - [x] path/to/file4.py
+
+### Wave 2: [name]
+- Strategy: [sequential/parallel]
+- Teammates: [N]
+- Status: [pending | in_progress | completed]
+- Files:
+  - [ ] path/to/file5.py
+  - [ ] path/to/file6.py
+  - [ ] path/to/file7.py
+  - [ ] path/to/file8.py
+
+## Compact Log
+- [timestamp] Compact #1: after planning, before Wave 1
+- [timestamp] Compact #2: after Wave 1, before Wave 2
+
+## Resume Instructions
+Jika session baru baca file ini:
+1. Cek "Current Wave" dan "Status"
+2. Jika status = stopped-context-limit → lanjutkan dari file terakhir yang belum [x]
+3. Jika status = completed → lanjut ke wave berikutnya
+4. JANGAN re-create files yang sudah [x]
+5. JANGAN re-run planning — langsung execute

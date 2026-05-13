@@ -1,0 +1,33 @@
+# Pipeline Intelligence
+
+Log performa setiap wave di setiap pipeline run. Di-update oleh orchestrator.
+wave-planner WAJIB baca file ini sebelum planning.
+
+## Pipeline Counter
+current: 0
+retro_trigger_at: 5
+
+---
+
+## Pipeline Run: [YYYY-MM-DD HH:MM] — [pipeline_type]
+
+### Wave [N]: [wave_name]
+- **Duration**: [X] minutes
+- **Teammates**: [N] ([list names])
+- **Strategy**: [agent-team / single-session / batch]
+- **Merge conflicts**: [N] ([list files])
+- **Conflict resolution**: [auto-resolve: N, agent-rewrite: N, manual: N]
+- **Fix attempts**: [N] (TC-IDs: [list])
+- **Cross-env failures**: [N] ([env names])
+- **Design violations (hooks)**: [N]
+- **Test failures (hooks)**: [N]
+
+### Patterns Detected
+- [pattern 1]
+- [pattern 2]
+
+### Recommendations for Future Waves
+- [recommendation 1]
+- [recommendation 2]
+
+---

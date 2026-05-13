@@ -1,0 +1,28 @@
+# Fix Ledger
+Generated: [timestamp]
+Last updated: [timestamp]
+
+## Summary
+- Total TCs tracked: [N]
+- Resolved: [N]
+- Open: [N]
+- Known Issues: [N]
+
+## TC-XXX: [Test Case Name]
+
+### Attempt 1 — [environment]
+- Date: [YYYY-MM-DD HH:MM]
+- Strategy: [description]
+- Developer: [be-developer | fe-developer]
+- Files changed: [list]
+- Result: ✅ Resolved | ❌ Failed
+- Error: [error message if failed]
+- Root cause: [analysis]
+
+### Attempt 2 — [environment]
+- Date: [YYYY-MM-DD HH:MM]
+- Strategy: [MUST BE DIFFERENT from Attempt 1]
+- Forbidden strategies: ["strategy from attempt 1"]
+- Developer: [be-developer | fe-developer]
+- Files changed: [list]
+- Result: ✅ Resolved | ❌ Failed
