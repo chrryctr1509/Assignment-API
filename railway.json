@@ -4,6 +4,7 @@
     "builder": "RAILPACK"
   },
   "deploy": {
+    "preDeployCommand": "node scripts/migrate.js",
     "startCommand": "npm start",
     "numReplicas": 1,
     "restartPolicyType": "ON_FAILURE",
