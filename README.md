@@ -2,6 +2,58 @@
 
 REST API for SIMS PPOB payment services.
 
+**Live URL:** https://assignment-api-production-7244.up.railway.app
+
+---
+
+## API Usage Flow
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    SIMS PPOB API FLOW                        │
+├─────────────────────────────────────────────────────────────┤
+│                                                              │
+│   ┌──────────┐      ┌──────────┐      ┌──────────────────┐ │
+│   │ REGISTER │ ───► │  LOGIN   │ ───► │ GET TOKEN + SAVE │ │
+│   └──────────┘      └──────────┘      └────────┬─────────┘ │
+│                                                 │           │
+│   ┌─────────────────────────────────────────────┘           │
+│   │                                                      │
+│   ▼                                                      │
+│   ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐  │
+│   │ BALANCE  │  │  BANNER  │  │ SERVICES │  │ PROFILE  │  │
+│   └────┬─────┘  └────┬─────┘  └────┬─────┘  └────┬─────┘  │
+│        │             │             │             │         │
+│        └─────────────┴─────────────┴─────────────┘         │
+│                         │                                   │
+│                    (READ DATA)                              │
+│                         │                                   │
+│   ┌─────────────────────┴─────────────────────┐            │
+│   │                                              │            │
+│   ▼                                              ▼            │
+│   ┌──────────┐                          ┌──────────────┐       │
+│   │  TOP UP  │                          │ TRANSACTION │       │
+│   │ (+saldo) │                          │  (PAYMENT)  │       │
+│   └────┬─────┘                          └──────┬───────┘       │
+│        │                                       │              │
+│        └───────────────┬───────────────────────┘              │
+│                        ▼                                     │
+│               ┌──────────────┐                               │
+│               │   HISTORY    │                               │
+│               │ (view all)   │                               │
+│               └──────────────┘                               │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### Flow Steps:
+
+1. **REGISTER** → Create new account
+2. **LOGIN** → Get JWT token
+3. **READ DATA** → Balance, Banner, Services, Profile
+4. **TOP UP** → Add balance to account
+5. **TRANSACTION** → Pay for services (Pulsa, Game, etc.)
+6. **HISTORY** → View all transactions
+
 ---
 
 ## Database Design
@@ -131,7 +183,7 @@ CREATE TABLE IF NOT EXISTS transactions (
 
 ## Tech Stack
 - Node.js + ExpressJS
-- MySQL (raw queries with mysql2)
+- MySQL (mysql2/promise)
 - JWT Authentication
 - bcrypt password hashing
 
@@ -144,8 +196,8 @@ CREATE TABLE IF NOT EXISTS transactions (
 
 ```bash
 # Clone repository
-git clone <repo_url>
-cd sims-ppob-api
+git clone https://github.com/chrryctr1509/Assignment-API.git
+cd Assignment-API
 
 # Install dependencies
 npm install
@@ -167,7 +219,8 @@ npm start
 |----------|-------------|---------|
 | PORT | Server port | 3000 |
 | NODE_ENV | Environment | development |
-| DB_HOST | MySQL host | localhost |
+| MYSQL_URL | Railway MySQL connection string | - |
+| DB_HOST | MySQL host (local) | localhost |
 | DB_PORT | MySQL port | 3306 |
 | DB_NAME | Database name | sims_ppob |
 | DB_USER | Database user | postgres |
@@ -175,71 +228,6 @@ npm start
 | JWT_SECRET | JWT signing secret | - |
 | JWT_EXPIRES_IN | Token expiry | 12h |
 | UPLOAD_DIR | Upload directory | uploads |
-
-## API Usage Flow
-
-### Step 1: Register
-```bash
-POST /registration
-Content-Type: application/json
-
-Request Body:
-{
-  "email": "user@example.com",
-  "first_name": "John",
-  "last_name": "Doe",
-  "password": "password123"
-}
-
-Response Success (201):
-{
-  "status": 0,
-  "message": "Registrasi berhasil silakan login",
-  "data": null
-}
-
-Response Error (400):
-{
-  "status": 102,
-  "message": "Email sudah terdaftar",
-  "data": null
-}
-```
-
-### Step 2: Login
-```bash
-POST /login
-Content-Type: application/json
-
-Request Body:
-{
-  "email": "user@example.com",
-  "password": "password123"
-}
-
-Response Success (200):
-{
-  "status": 0,
-  "message": "Login Sukses",
-  "data": {
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
-  }
-}
-
-Response Error (401):
-{
-  "status": 103,
-  "message": "Username atau password salah",
-  "data": null
-}
-```
-
-**IMPORTANT:** Save the token from login response. Use it in Authorization header for all protected endpoints.
-
-### Step 3: Use Token for Protected Endpoints
-```bash
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
-```
 
 ---
 
@@ -249,7 +237,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 **Auth:** No | **Method:** POST
 
 ```bash
-POST http://localhost:3000/registration
+POST https://assignment-api-production-7244.up.railway.app/registration
 Content-Type: application/json
 
 Body:
@@ -272,7 +260,7 @@ Response (201):
 **Auth:** No | **Method:** POST
 
 ```bash
-POST http://localhost:3000/login
+POST https://assignment-api-production-7244.up.railway.app/login
 Content-Type: application/json
 
 Body:
@@ -291,11 +279,24 @@ Response (200):
 }
 ```
 
-### 3. GET /profile
+### 3. GET /health
+**Auth:** No | **Method:** GET
+
+```bash
+GET https://assignment-api-production-7244.up.railway.app/health
+
+Response (200):
+{
+  "status": "ok",
+  "timestamp": "2026-05-14T06:00:00.000Z"
+}
+```
+
+### 4. GET /profile
 **Auth:** JWT Required | **Method:** GET
 
 ```bash
-GET http://localhost:3000/profile
+GET https://assignment-api-production-7244.up.railway.app/profile
 Authorization: Bearer {{token}}
 
 Response (200):
@@ -309,20 +310,13 @@ Response (200):
     "profile_image": null
   }
 }
-
-Response Error (401):
-{
-  "status": 108,
-  "message": "Token tidak tidak valid atau kadaluwarsa",
-  "data": null
-}
 ```
 
-### 4. PUT /profile/update
+### 5. PUT /profile/update
 **Auth:** JWT Required | **Method:** PUT
 
 ```bash
-PUT http://localhost:3000/profile/update
+PUT https://assignment-api-production-7244.up.railway.app/profile/update
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
@@ -345,11 +339,11 @@ Response (200):
 }
 ```
 
-### 5. PUT /profile/image
+### 6. PUT /profile/image
 **Auth:** JWT Required | **Method:** PUT | **Content-Type:** multipart/form-data
 
 ```bash
-PUT http://localhost:3000/profile/image
+PUT https://assignment-api-production-7244.up.railway.app/profile/image
 Authorization: Bearer {{token}}
 Content-Type: multipart/form-data
 
@@ -367,20 +361,13 @@ Response (200):
     "profile_image": "1747152341234-1234.jpeg"
   }
 }
-
-Response Error (400):
-{
-  "status": 102,
-  "message": "Format Image tidak sesuai",
-  "data": null
-}
 ```
 
-### 6. GET /banner
+### 7. GET /banner
 **Auth:** JWT Required | **Method:** GET
 
 ```bash
-GET http://localhost:3000/banner
+GET https://assignment-api-production-7244.up.railway.app/banner
 Authorization: Bearer {{token}}
 
 Response (200):
@@ -398,11 +385,11 @@ Response (200):
 }
 ```
 
-### 7. GET /services
+### 8. GET /services
 **Auth:** JWT Required | **Method:** GET
 
 ```bash
-GET http://localhost:3000/services
+GET https://assignment-api-production-7244.up.railway.app/services
 Authorization: Bearer {{token}}
 
 Response (200):
@@ -416,22 +403,16 @@ Response (200):
       "service_icon": "https://cdn.example.com/icon/pulsa.png",
       "service_tariff": "40000.00"
     },
-    {
-      "service_code": "PGN",
-      "service_name": "Tagihan Gas",
-      "service_icon": "https://cdn.example.com/icon/pgn.png",
-      "service_tariff": "50000.00"
-    },
     ...
   ]
 }
 ```
 
-### 8. GET /balance
+### 9. GET /balance
 **Auth:** JWT Required | **Method:** GET
 
 ```bash
-GET http://localhost:3000/balance
+GET https://assignment-api-production-7244.up.railway.app/balance
 Authorization: Bearer {{token}}
 
 Response (200):
@@ -444,11 +425,11 @@ Response (200):
 }
 ```
 
-### 9. POST /topup
+### 10. POST /topup
 **Auth:** JWT Required | **Method:** POST
 
 ```bash
-POST http://localhost:3000/topup
+POST https://assignment-api-production-7244.up.railway.app/topup
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
@@ -465,20 +446,13 @@ Response (200):
     "balance": "50000.00"
   }
 }
-
-Response Error (400):
-{
-  "status": 102,
-  "message": "Paramter amount hanya boleh angka dan tidak boleh lebih kecil dari 0",
-  "data": null
-}
 ```
 
-### 10. POST /transaction
+### 11. POST /transaction
 **Auth:** JWT Required | **Method:** POST
 
 ```bash
-POST http://localhost:3000/transaction
+POST https://assignment-api-production-7244.up.railway.app/transaction
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
@@ -500,32 +474,14 @@ Response (200):
     "created_on": "2026-05-13T16:26:41.622Z"
   }
 }
-
-Response Error - Insufficient Balance (400):
-{
-  "status": 102,
-  "message": "Saldo tidak mencukupi",
-  "data": null
-}
-
-Response Error - Service Not Found (400):
-{
-  "status": 102,
-  "message": "Service atau Layanan tidak ditemukan",
-  "data": null
-}
 ```
 
-### 11. GET /transaction/history
+### 12. GET /transaction/history
 **Auth:** JWT Required | **Method:** GET
 
 ```bash
-GET http://localhost:3000/transaction/history?offset=0&limit=5
+GET https://assignment-api-production-7244.up.railway.app/transaction/history?offset=0&limit=5
 Authorization: Bearer {{token}}
-
-Query Params:
-- offset: number (default: 0)
-- limit: number (default: 5)
 
 Response (200):
 {
@@ -541,13 +497,6 @@ Response (200):
         "description": "Pulsa Elektrik",
         "total_amount": "40000.00",
         "created_on": "2026-05-13T16:26:41.000Z"
-      },
-      {
-        "invoice_number": "INV1778689601539789",
-        "transaction_type": "TOPUP",
-        "description": "Top Up",
-        "total_amount": "50000.00",
-        "created_on": "2026-05-13T16:23:49.000Z"
       }
     ]
   }
@@ -562,37 +511,37 @@ Response (200):
 
 ```bash
 # 1. Register
-curl -X POST http://localhost:3000/registration \
+curl -X POST https://assignment-api-production-7244.up.railway.app/registration \
   -H "Content-Type: application/json" \
   -d '{"email":"test@example.com","first_name":"Test","last_name":"User","password":"password123"}'
 
 # 2. Login (copy token from response)
-curl -X POST http://localhost:3000/login \
+curl -X POST https://assignment-api-production-7244.up.railway.app/login \
   -H "Content-Type: application/json" \
   -d '{"email":"test@example.com","password":"password123"}'
 
 # 3. Get Profile (use token)
-curl http://localhost:3000/profile \
+curl https://assignment-api-production-7244.up.railway.app/profile \
   -H "Authorization: Bearer YOUR_TOKEN_HERE"
 
 # 4. Get Balance
-curl http://localhost:3000/balance \
+curl https://assignment-api-production-7244.up.railway.app/balance \
   -H "Authorization: Bearer YOUR_TOKEN_HERE"
 
 # 5. Top Up
-curl -X POST http://localhost:3000/topup \
+curl -X POST https://assignment-api-production-7244.up.railway.app/topup \
   -H "Authorization: Bearer YOUR_TOKEN_HERE" \
   -H "Content-Type: application/json" \
   -d '{"top_up_amount": 100000}'
 
 # 6. Transaction (bayar PULSA)
-curl -X POST http://localhost:3000/transaction \
+curl -X POST https://assignment-api-production-7244.up.railway.app/transaction \
   -H "Authorization: Bearer YOUR_TOKEN_HERE" \
   -H "Content-Type: application/json" \
   -d '{"service_code": "PULSA"}'
 
 # 7. Check History
-curl "http://localhost:3000/transaction/history?offset=0&limit=5" \
+curl "https://assignment-api-production-7244.up.railway.app/transaction/history?offset=0&limit=5" \
   -H "Authorization: Bearer YOUR_TOKEN_HERE"
 ```
 
@@ -643,11 +592,34 @@ curl "http://localhost:3000/transaction/history?offset=0&limit=5" \
 
 ---
 
+## Testing with Postman
+
+1. Import `postman/SIMS_PPOB.postman_collection.json` into Postman
+2. The collection is pre-configured with Railway URL: `https://assignment-api-production-7244.up.railway.app`
+3. Run **Registration** request first
+4. Run **Login** request — token auto-saved to `{{token}}`
+5. All subsequent requests will auto-use the token
+6. Test endpoints in order: Register → Login → Profile → Balance → Top Up → Transaction → History
+
+---
+
+## Deployment
+
+### Railway.app
+1. Connect GitHub repository to Railway
+2. Add MySQL plugin (Railway provides MySQL)
+3. Set environment variable `MYSQL_URL` with Railway provided connection string
+4. Deploy automatically on push to main branch
+
+### API Live Status
+- **URL:** https://assignment-api-production-7244.up.railway.app
+- **Health Check:** https://assignment-api-production-7244.up.railway.app/health
+
+---
+
 ## Database Schema Reference
 
 ### users
-**Description:** User account data
-
 | Column | Type | Constraints | Default | Description |
 |--------|------|-------------|---------|-------------|
 | id | CHAR(36) | PRIMARY KEY | UUID() | Unique user identifier |
@@ -661,8 +633,6 @@ curl "http://localhost:3000/transaction/history?offset=0&limit=5" \
 | updated_on | TIMESTAMP | ON UPDATE CURRENT_TIMESTAMP | - | Last update time |
 
 ### banners
-**Description:** Promotional banners
-
 | Column | Type | Constraints | Default | Description |
 |--------|------|-------------|---------|-------------|
 | id | INT | PRIMARY KEY, AUTO_INCREMENT | - | Banner ID |
@@ -672,8 +642,6 @@ curl "http://localhost:3000/transaction/history?offset=0&limit=5" \
 | created_on | TIMESTAMP | DEFAULT CURRENT_TIMESTAMP | - | Creation time |
 
 ### services
-**Description:** Available payment services
-
 | Column | Type | Constraints | Default | Description |
 |--------|------|-------------|---------|-------------|
 | id | INT | PRIMARY KEY, AUTO_INCREMENT | - | Service ID |
@@ -684,8 +652,6 @@ curl "http://localhost:3000/transaction/history?offset=0&limit=5" \
 | created_on | TIMESTAMP | DEFAULT CURRENT_TIMESTAMP | - | Creation time |
 
 ### transactions
-**Description:** User transaction history
-
 | Column | Type | Constraints | Default | Description |
 |--------|------|-------------|---------|-------------|
 | id | CHAR(36) | PRIMARY KEY | UUID() | Transaction ID |
@@ -696,30 +662,3 @@ curl "http://localhost:3000/transaction/history?offset=0&limit=5" \
 | transaction_type | VARCHAR(20) | NOT NULL | - | TOPUP or PAYMENT |
 | total_amount | DECIMAL(15,2) | NOT NULL | - | Transaction amount |
 | created_on | TIMESTAMP | DEFAULT CURRENT_TIMESTAMP | - | Transaction time |
-
----
-
-## Testing with Postman
-
-1. Import `postman/SIMS_PPOB.postman_collection.json` into Postman
-2. Update `{{base_url}}` to your server URL (e.g., `http://localhost:3000`)
-3. Run **Registration** request first
-4. Run **Login** request — token auto-saved to `{{token}}`
-5. All subsequent requests will auto-use the token
-6. Test endpoints in order: Register → Login → Profile → Balance → Top Up → Transaction → History
-
----
-
-## Deployment
-
-### Railway.app
-1. Connect GitHub repository
-2. Add environment variables in Railway dashboard
-3. Set build command: `npm install`
-4. Set start command: `npm start`
-5. Add MySQL plugin (Railway provides free PostgreSQL, or use external MySQL)
-
-### Manual Deploy
-1. `npm install --production`
-2. Set all environment variables
-3. `npm start`
