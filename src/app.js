@@ -27,6 +27,11 @@ app.get("/", (req, res) => {
   res.json({ status: 0, message: "SIMS PPOB API Running", data: null });
 });
 
+// Health check endpoint for Railway
+app.get("/health", (req, res) => {
+  res.json({ status: "ok", timestamp: new Date().toISOString() });
+});
+
 // Error handler
 app.use((err, req, res, next) => {
   if (err.message === "Format Image tidak sesuai") {
