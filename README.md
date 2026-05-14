@@ -248,10 +248,31 @@ Body:
   "password": "password123"
 }
 
-Response (201):
+Response Success (201):
 {
   "status": 0,
   "message": "Registrasi berhasil silakan login",
+  "data": null
+}
+
+Response Error - Email invalid (400):
+{
+  "status": 102,
+  "message": "Format email tidak valid",
+  "data": null
+}
+
+Response Error - Email already registered (400):
+{
+  "status": 102,
+  "message": "Email sudah terdaftar",
+  "data": null
+}
+
+Response Error - Password too short (400):
+{
+  "status": 102,
+  "message": "Password minimal 8 karakter",
   "data": null
 }
 ```
@@ -269,13 +290,27 @@ Body:
   "password": "password123"
 }
 
-Response (200):
+Response Success (200):
 {
   "status": 0,
   "message": "Login Sukses",
   "data": {
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
   }
+}
+
+Response Error - Missing fields (400):
+{
+  "status": 102,
+  "message": "Email dan password harus diisi",
+  "data": null
+}
+
+Response Error - Wrong credentials (401):
+{
+  "status": 103,
+  "message": "Username atau password salah",
+  "data": null
 }
 ```
 
@@ -285,10 +320,17 @@ Response (200):
 ```bash
 GET https://assignment-api-production-7244.up.railway.app/health
 
-Response (200):
+Response Success (200):
 {
   "status": "ok",
   "timestamp": "2026-05-14T06:00:00.000Z"
+}
+
+Response Error (500):
+{
+  "status": 500,
+  "message": "Error message",
+  "data": null
 }
 ```
 
@@ -299,7 +341,7 @@ Response (200):
 GET https://assignment-api-production-7244.up.railway.app/profile
 Authorization: Bearer {{token}}
 
-Response (200):
+Response Success (200):
 {
   "status": 0,
   "message": "Sukses",
@@ -309,6 +351,20 @@ Response (200):
     "last_name": "Doe",
     "profile_image": null
   }
+}
+
+Response Error - Token invalid (401):
+{
+  "status": 108,
+  "message": "Token tidak tidak valid atau kadaluwarsa",
+  "data": null
+}
+
+Response Error - User not found (404):
+{
+  "status": 102,
+  "message": "User tidak ditemukan",
+  "data": null
 }
 ```
 
@@ -326,7 +382,7 @@ Body:
   "last_name": "Doe"
 }
 
-Response (200):
+Response Success (200):
 {
   "status": 0,
   "message": "Update Profile berhasil",
@@ -336,6 +392,20 @@ Response (200):
     "last_name": "Doe",
     "profile_image": null
   }
+}
+
+Response Error - Missing fields (400):
+{
+  "status": 102,
+  "message": "First name dan last name harus diisi",
+  "data": null
+}
+
+Response Error - Token invalid (401):
+{
+  "status": 108,
+  "message": "Token tidak tidak valid atau kadaluwarsa",
+  "data": null
 }
 ```
 
@@ -350,7 +420,7 @@ Content-Type: multipart/form-data
 Form Data:
 - key: profile_image (file, jpeg/png only, max 2MB)
 
-Response (200):
+Response Success (200):
 {
   "status": 0,
   "message": "Update Profile Image berhasil",
@@ -361,6 +431,27 @@ Response (200):
     "profile_image": "1747152341234-1234.jpeg"
   }
 }
+
+Response Error - No file (400):
+{
+  "status": 102,
+  "message": "File profile_image diperlukan",
+  "data": null
+}
+
+Response Error - Wrong format (400):
+{
+  "status": 102,
+  "message": "Format Image tidak sesuai",
+  "data": null
+}
+
+Response Error - Token invalid (401):
+{
+  "status": 108,
+  "message": "Token tidak tidak valid atau kadaluwarsa",
+  "data": null
+}
 ```
 
 ### 7. GET /banner
@@ -370,7 +461,209 @@ Response (200):
 GET https://assignment-api-production-7244.up.railway.app/banner
 Authorization: Bearer {{token}}
 
-Response (200):
+Response Success (200):
+{
+  "status": 0,
+  "message": "Sukses",
+  "data": [
+    {
+      "banner_name": "Promo Selamat Tahun Baru",
+      "banner_image": "https://cdn.example.com/banner/newyear.jpg",
+      "description": "Diskon 20% untuk semua transaksi"
+    },
+    ...
+  ]
+}
+
+Response Error - Token invalid (401):
+{
+  "status": 108,
+  "message": "Token tidak tidak valid atau kadaluwarsa",
+  "data": null
+}
+```
+
+### 8. GET /services
+**Auth:** JWT Required | **Method:** GET
+
+```bash
+GET https://assignment-api-production-7244.up.railway.app/services
+Authorization: Bearer {{token}}
+
+Response Success (200):
+{
+  "status": 0,
+  "message": "Sukses",
+  "data": [
+    {
+      "service_code": "PULSA",
+      "service_name": "Pulsa Elektrik",
+      "service_icon": "https://cdn.example.com/icon/pulsa.png",
+      "service_tariff": "40000.00"
+    },
+    ...
+  ]
+}
+
+Response Error - Token invalid (401):
+{
+  "status": 108,
+  "message": "Token tidak tidak valid atau kadaluwarsa",
+  "data": null
+}
+```
+
+### 9. GET /balance
+**Auth:** JWT Required | **Method:** GET
+
+```bash
+GET https://assignment-api-production-7244.up.railway.app/balance
+Authorization: Bearer {{token}}
+
+Response Success (200):
+{
+  "status": 0,
+  "message": "Get Balance Berhasil",
+  "data": {
+    "balance": "0.00"
+  }
+}
+
+Response Error - Token invalid (401):
+{
+  "status": 108,
+  "message": "Token tidak tidak valid atau kadaluwarsa",
+  "data": null
+}
+```
+
+### 10. POST /topup
+**Auth:** JWT Required | **Method:** POST
+
+```bash
+POST https://assignment-api-production-7244.up.railway.app/topup
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+Body:
+{
+  "top_up_amount": 50000
+}
+
+Response Success (200):
+{
+  "status": 0,
+  "message": "Top Up Balance berhasil",
+  "data": {
+    "balance": "50000.00"
+  }
+}
+
+Response Error - Invalid amount (400):
+{
+  "status": 102,
+  "message": "Paramter amount hanya boleh angka dan tidak boleh lebih kecil dari 0",
+  "data": null
+}
+
+Response Error - Token invalid (401):
+{
+  "status": 108,
+  "message": "Token tidak tidak valid atau kadaluwarsa",
+  "data": null
+}
+```
+
+### 11. POST /transaction
+**Auth:** JWT Required | **Method:** POST
+
+```bash
+POST https://assignment-api-production-7244.up.railway.app/transaction
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+Body:
+{
+  "service_code": "PULSA"
+}
+
+Response Success (200):
+{
+  "status": 0,
+  "message": "Transaksi berhasil",
+  "data": {
+    "invoice_number": "INV1778689601622821",
+    "service_code": "PULSA",
+    "service_name": "Pulsa Elektrik",
+    "transaction_type": "PAYMENT",
+    "total_amount": "40000.00",
+    "created_on": "2026-05-13T16:26:41.622Z"
+  }
+}
+
+Response Error - Insufficient balance (400):
+{
+  "status": 102,
+  "message": "Saldo tidak mencukupi",
+  "data": null
+}
+
+Response Error - Service not found (400):
+{
+  "status": 102,
+  "message": "Service atau Layanan tidak ditemukan",
+  "data": null
+}
+
+Response Error - Token invalid (401):
+{
+  "status": 108,
+  "message": "Token tidak tidak valid atau kadaluwarsa",
+  "data": null
+}
+```
+
+### 12. GET /transaction/history
+**Auth:** JWT Required | **Method:** GET
+
+```bash
+GET https://assignment-api-production-7244.up.railway.app/transaction/history?offset=0&limit=5
+Authorization: Bearer {{token}}
+
+Query Params:
+- offset: number (default: 0)
+- limit: number (default: 5)
+
+Response Success (200):
+{
+  "status": 0,
+  "message": "Get History Berhasil",
+  "data": {
+    "offset": 0,
+    "limit": 5,
+    "records": [
+      {
+        "invoice_number": "INV1778689601622821",
+        "transaction_type": "PAYMENT",
+        "description": "Pulsa Elektrik",
+        "total_amount": "40000.00",
+        "created_on": "2026-05-13T16:26:41.000Z"
+      }
+    ]
+  }
+}
+
+Response Error - Token invalid (401):
+{
+  "status": 108,
+  "message": "Token tidak tidak valid atau kadaluwarsa",
+  "data": null
+}
+```
+
+---
+
+## Complete Usage Example
 {
   "status": 0,
   "message": "Sukses",
