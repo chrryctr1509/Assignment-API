@@ -1,19 +1,40 @@
 {
   "info": {
-    "name": "SIMS PPOB API",
+    "name": "SIMS PPOB API - Railway",
+    "description": "SIMS PPOB API deployed on Railway",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "variable": [
     {
       "key": "base_url",
-      "value": "http://localhost:3000"
+      "value": "https://assignment-api-production-7244.up.railway.app"
     },
     {
       "key": "token",
       "value": ""
+    },
+    {
+      "key": "email",
+      "value": "railwayfinal@test.com"
+    },
+    {
+      "key": "password",
+      "value": "test123456"
     }
   ],
   "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{base_url}}/health",
+          "host": ["{{base_url}}"],
+          "path": ["health"]
+        },
+        "description": "Health check endpoint for Railway deployment"
+      }
+    },
     {
       "name": "Registration",
       "request": {
@@ -23,10 +44,15 @@
           "host": ["{{base_url}}"],
           "path": ["registration"]
         },
-        "header": [],
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
         "body": {
           "mode": "raw",
-          "raw": "{\"email\": \"test@example.com\", \"first_name\": \"Test\", \"last_name\": \"User\", \"password\": \"password123\"}"
+          "raw": "{\"email\": \"{{email}}\", \"first_name\": \"Railway\", \"last_name\": \"User\", \"password\": \"{{password}}\"}"
         },
         "description": "Register new user"
       }
@@ -41,6 +67,9 @@
               "var jsonData = pm.response.json();",
               "if (jsonData.data && jsonData.data.token) {",
               "    pm.collectionVariables.set('token', jsonData.data.token);",
+              "    pm.test('Token saved', true);",
+              "} else {",
+              "    pm.test('Login failed', false);",
               "}"
             ]
           }
@@ -53,10 +82,15 @@
           "host": ["{{base_url}}"],
           "path": ["login"]
         },
-        "header": [],
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
         "body": {
           "mode": "raw",
-          "raw": "{\"email\": \"test@example.com\", \"password\": \"password123\"}"
+          "raw": "{\"email\": \"{{email}}\", \"password\": \"{{password}}\"}"
         },
         "description": "Login and save token to collection variable"
       }
@@ -92,6 +126,10 @@
           {
             "key": "Authorization",
             "value": "Bearer {{token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
           }
         ],
         "body": {
@@ -122,7 +160,8 @@
             {
               "key": "profile_image",
               "type": "file",
-              "src": ""
+              "src": "",
+              "description": "JPEG or PNG file, max 2MB"
             }
           ]
         },
@@ -196,6 +235,10 @@
           {
             "key": "Authorization",
             "value": "Bearer {{token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
           }
         ],
         "body": {
@@ -206,7 +249,7 @@
       }
     },
     {
-      "name": "Transaction",
+      "name": "Transaction (Payment)",
       "request": {
         "method": "POST",
         "url": {
@@ -218,13 +261,17 @@
           {
             "key": "Authorization",
             "value": "Bearer {{token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
           }
         ],
         "body": {
           "mode": "raw",
           "raw": "{\"service_code\": \"PULSA\"}"
         },
-        "description": "Pay for a service"
+        "description": "Pay for a service (PULSA, PGN, LISTRIK, PDAM, etc.)"
       }
     },
     {
@@ -238,11 +285,13 @@
           "query": [
             {
               "key": "offset",
-              "value": "0"
+              "value": "0",
+              "description": "Pagination offset"
             },
             {
               "key": "limit",
-              "value": "5"
+              "value": "5",
+              "description": "Number of records to return"
             }
           ]
         },
